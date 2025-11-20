@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8692381744156147412}
   - component: {fileID: 7064290260817258494}
   - component: {fileID: 1607776519273203450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 6286060791166017747}
   - component: {fileID: 8569424137034156085}
   - component: {fileID: 2489509321126236083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,7 +115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7273873322411729093}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4, y: 1, z: 21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 8569424137034156085}
+  deathEffect: {fileID: 6460668723778391503, guid: 3a312ee7f5c2337469f00c5ac1247434, type: 3}
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2

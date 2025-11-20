@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject startingPoint;
 
+    public GameObject playerProjectile;
+
+    public ParticleSystem deathEffect;
+
     public Slider healthBar;
 
     public int health;
@@ -16,22 +20,22 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector] public int playerCurrency;
 
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float currentMoveSpeed = 5f;
+    [SerializeField] private float originalMoveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Camera followCamera;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravity = -9.81f;
 
-    private Vector3 currentPosition;
     private Vector3 moveDirection;
     private bool isGrounded;
+    private bool isRunning = false;
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         playerController = GetComponent<CharacterController>();
-        currentPosition = startingPoint.transform.position;
         healthBar.value = health;
     }
 
@@ -39,27 +43,45 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
 
-        if (currentPosition.y <= 10)
+        if (transform.position.y <= -10)
         {
-            currentPosition = startingPoint.transform.position;
+            transform.position = startingPoint.transform.position;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Attack();
         }
     }
 
     void Movement()
     {
         isGrounded = playerController.isGrounded;
+
         if (isGrounded && moveDirection.y < 0)
         {
             moveDirection.y = 0f;
         }
 
+        bool pressingShift = Input.GetKey(KeyCode.LeftShift);
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
         Vector3 movementInput = Quaternion.Euler(0, followCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput;
 
-        playerController.Move(movementDirection * moveSpeed * Time.deltaTime);
+        playerController.Move(movementDirection * currentMoveSpeed * Time.deltaTime);
+
+        if (pressingShift && !isRunning)
+        {
+            currentMoveSpeed *= 2;
+            isRunning = true;
+        }
+        else if (!pressingShift)
+        {
+            currentMoveSpeed = originalMoveSpeed;
+            isRunning = false;
+        }
 
         if (movementDirection != Vector3.zero)
         {
@@ -68,13 +90,20 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, desiredRotation, rotationSpeed * Time.deltaTime);
         }
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButton("Jump") && isGrounded)
         {
             moveDirection.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
 
         moveDirection.y += gravity * Time.deltaTime;
         playerController.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void Attack()
+    {
+        Rigidbody rb = Instantiate(playerProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+
+        rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
     }
 
     public void TakeDamage(int damage)
@@ -90,15 +119,26 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
+        //StopAllCoroutines();
+
+        //StartCoroutine(DelayedReset());
+
         SceneManager.LoadScene("Level");
     }
 
-    private void OnCollisionEnter (Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Projectile"))
+        if (other.gameObject.CompareTag("Enemy Projectile"))
         {
             Destroy(other.gameObject);
-    TakeDamage(1);
-}
+            TakeDamage(1);
+        }
     }
+    
+    //private IEnumerator DelayedReset()
+    //{
+    //    yield return new WaitForSeconds(2f);
+
+    //    SceneManager.LoadScene("Level");
+    //}
 }
