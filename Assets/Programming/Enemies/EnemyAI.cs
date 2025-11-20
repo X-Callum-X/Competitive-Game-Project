@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
+    public ParticleSystem deathEffect;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
@@ -125,7 +126,18 @@ public class EnemyAI : MonoBehaviour
 
     private void Die()
     {
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
+
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player Projectile"))
+        {
+            Destroy(other.gameObject);
+            TakeDamage(1);
+        }
     }
 
     private void OnDrawGizmosSelected()
