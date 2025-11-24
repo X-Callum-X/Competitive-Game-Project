@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController playerController;
 
+    private BarrierPaymentSystem barrier;
+
     [HideInInspector] public int playerCurrency;
 
     [SerializeField] private float currentMoveSpeed = 5f;
@@ -31,12 +33,18 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isRunning = false;
 
+    public GameObject notEnoughCurrencyText;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
         playerController = GetComponent<CharacterController>();
+        barrier = FindAnyObjectByType<BarrierPaymentSystem>();
+
         healthBar.value = health;
+        notEnoughCurrencyText.SetActive(false);
     }
 
     private void Update()
@@ -133,8 +141,30 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             TakeDamage(1);
         }
+
+        if (other.gameObject.name == "Barrier Trigger" && playerCurrency >= barrier.amountToPay)
+        {
+            Debug.Log("Collision");
+            playerCurrency -= barrier.amountToPay;
+            Destroy(barrier.gameObject);
+        }
+        else if (other.gameObject.name == "Barrier Trigger" && playerCurrency < barrier.amountToPay)
+        {
+            StopAllCoroutines();
+            StartCoroutine(DisplayNotEnoughText());
+        }
     }
-    
+
+    private IEnumerator DisplayNotEnoughText()
+    {
+        notEnoughCurrencyText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        notEnoughCurrencyText.gameObject.SetActive(false);
+    }
+
+
     //private IEnumerator DelayedReset()
     //{
     //    yield return new WaitForSeconds(2f);
