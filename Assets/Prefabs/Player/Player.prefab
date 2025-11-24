@@ -158,10 +158,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingPoint: {fileID: 0}
+  playerProjectile: {fileID: 6684519989448223093, guid: 92890f4691ce3714fb590d18e6e40dab, type: 3}
+  deathEffect: {fileID: 0}
   healthBar: {fileID: 0}
   health: 3
   playerCurrency: 0
-  moveSpeed: 5
+  currentMoveSpeed: 5
+  originalMoveSpeed: 5
   rotationSpeed: 10
   followCamera: {fileID: 0}
   jumpHeight: 1
@@ -180,7 +183,7 @@ GameObject:
   - component: {fileID: 7348472637829431118}
   m_Layer: 3
   m_Name: Player Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
