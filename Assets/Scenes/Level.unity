@@ -4911,6 +4911,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 706416845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1344751092 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8426796125885399471, guid: 386220f42bc9c614c960b40652134154, type: 3}
+  m_PrefabInstance: {fileID: 3306244034428645880}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1372180016 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7903174529163386932, guid: a9b118ddafdeef942b3a248ffb75572f, type: 3}
@@ -6491,10 +6502,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1922226906}
     m_Modifications:
+    - target: {fileID: 1981334658956003829, guid: 386220f42bc9c614c960b40652134154, type: 3}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 1344751092}
     - target: {fileID: 2489509321126236083, guid: 386220f42bc9c614c960b40652134154, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 881106478}
+    - target: {fileID: 2489509321126236083, guid: 386220f42bc9c614c960b40652134154, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1344751092}
+    - target: {fileID: 2489509321126236083, guid: 386220f42bc9c614c960b40652134154, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4561894126995254505, guid: 386220f42bc9c614c960b40652134154, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4
@@ -6535,11 +6558,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6453740630333718519, guid: 386220f42bc9c614c960b40652134154, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880950985859066442, guid: 386220f42bc9c614c960b40652134154, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6880950985859066442, guid: 386220f42bc9c614c960b40652134154, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7273873322411729093, guid: 386220f42bc9c614c960b40652134154, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1981334658956003829, guid: 386220f42bc9c614c960b40652134154, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
