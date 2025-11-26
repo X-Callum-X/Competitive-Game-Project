@@ -1,9 +1,5 @@
 using System.Collections;
-using System.Diagnostics.Contracts;
-using TMPro;
-using UnityEditor.Overlays;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UISlidingController : MonoBehaviour
 {

@@ -1,14 +1,18 @@
-using System.Data.SqlTypes;
-using Unity.VisualScripting;
-using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    private Camera cam;
     public NavMeshAgent agent;
     public ParticleSystem deathEffect;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+
+    public Slider healthBar;
+    private float healthbarTarget = 1;
+    public float reduceSpeed = 2;
 
     public float health;
 
@@ -28,12 +32,23 @@ public class EnemyAI : MonoBehaviour
 
     private void Awake()
     {
+        cam = Camera.main;
+
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+
+        healthBar.maxValue = health;
+
+        //healthBar.value = health;
+
+        UpdateHealthBar();
     }
 
     private void Update()
     {
+        healthBar.transform.rotation = Quaternion.LookRotation(healthBar.transform.position - cam.transform.position);
+        healthBar.value = Mathf.MoveTowards(healthBar.value, healthbarTarget, reduceSpeed * Time.deltaTime);
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
@@ -104,6 +119,8 @@ public class EnemyAI : MonoBehaviour
 
             rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
 
+            Destroy(rb.gameObject, 3);
+
             hasAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -118,6 +135,10 @@ public class EnemyAI : MonoBehaviour
     {
         health -= damage;
 
+        //healthBar.value = health;
+
+        UpdateHealthBar();
+
         if (health <= 0)
         {
             Die();
@@ -129,6 +150,11 @@ public class EnemyAI : MonoBehaviour
         Instantiate(deathEffect, transform.position, Quaternion.identity);
 
         Destroy(gameObject);
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthbarTarget = health;
     }
 
     private void OnTriggerEnter(Collider other)

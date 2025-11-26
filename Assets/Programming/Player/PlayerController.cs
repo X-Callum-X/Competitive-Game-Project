@@ -117,6 +117,8 @@ public class PlayerController : MonoBehaviour
             Rigidbody rb = Instantiate(playerProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
             rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
+
+            Destroy(rb.gameObject, 3);
         }
     }
 
