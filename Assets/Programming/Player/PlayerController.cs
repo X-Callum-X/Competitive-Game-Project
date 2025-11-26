@@ -10,8 +10,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject playerProjectile;
 
-    public ParticleSystem deathEffect;
-
     public Slider healthBar;
 
     public int health;
@@ -19,6 +17,10 @@ public class PlayerController : MonoBehaviour
     private CharacterController playerController;
 
     private BarrierPaymentSystem barrier;
+
+    public ParticleSystem deathEffect;
+
+    private PauseManager pauseManager;
 
     [HideInInspector] public int playerCurrency;
 
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
         playerController = GetComponent<CharacterController>();
         barrier = FindAnyObjectByType<BarrierPaymentSystem>();
+        pauseManager = FindFirstObjectByType<PauseManager>();
 
         healthBar.value = health;
         notEnoughCurrencyText.SetActive(false);
@@ -109,9 +112,12 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        Rigidbody rb = Instantiate(playerProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        if (!pauseManager.isPaused)
+        {
+            Rigidbody rb = Instantiate(playerProjectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
 
-        rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
+            rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
+        }
     }
 
     public void TakeDamage(int damage)
