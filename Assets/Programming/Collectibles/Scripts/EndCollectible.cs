@@ -21,6 +21,11 @@ public class EndCollectible : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        Time.timeScale = 1f;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         SceneManager.LoadScene("MainMenu");
     }
 }
