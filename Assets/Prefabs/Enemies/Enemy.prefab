@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 6286060791166017747}
   - component: {fileID: 8569424137034156085}
   - component: {fileID: 2489509321126236083}
-  - component: {fileID: 1981334658956003829}
+  - component: {fileID: 1240000167659530301}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -574,11 +574,11 @@ MonoBehaviour:
   movePointRange: 5
   timeBetweenAttacks: 2
   projectile: {fileID: 6684519989448223093, guid: f827b7fcf81a658418af36e3ec6e7702, type: 3}
-  sightRange: 15
-  attackRange: 9
+  sightRange: 10
+  attackRange: 7
   playerInSightRange: 0
   playerInAttackRange: 0
---- !u!114 &1981334658956003829
+--- !u!114 &1240000167659530301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -587,10 +587,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7273873322411729093}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eea8b09432232c43ba4d99853a69ace, type: 3}
+  m_Script: {fileID: 11500000, guid: 23b6904fc205c3444a3c94b015afe411, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  dud: {fileID: 1677723936953424585, guid: a9b118ddafdeef942b3a248ffb75572f, type: 3}
+  numOfDuds: 3
+  radius: 1
 --- !u!1 &8734422357100751695
 GameObject:
   m_ObjectHideFlags: 0

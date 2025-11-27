@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y <= -10)
         {
-            transform.position = startingPoint.transform.position;
+            Die();
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         if (pressingShift && !isRunning)
         {
-            currentMoveSpeed *= 2;
+            currentMoveSpeed *= 1.5f;
             isRunning = true;
         }
         else if (!pressingShift)
@@ -106,7 +106,11 @@ public class PlayerController : MonoBehaviour
             moveDirection.y += Mathf.Sqrt(jumpHeight * -3.0f * gravity);
         }
 
-        moveDirection.y += gravity * Time.deltaTime;
+        if (!isGrounded)
+        {
+            moveDirection.y += gravity * Time.deltaTime;
+        }
+
         playerController.Move(moveDirection * Time.deltaTime);
     }
 

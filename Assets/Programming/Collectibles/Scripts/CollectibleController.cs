@@ -5,6 +5,8 @@ public class CollectibleController : MonoBehaviour
 {
     private PlayerController player;
 
+    public ParticleSystem collectEffect;
+
     [SerializeField] private float rotationSpeed;
     [SerializeField] private CollectibleSO collectible;
 
@@ -22,6 +24,8 @@ public class CollectibleController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Instantiate(collectEffect, transform.position, Quaternion.identity);
+
             player.playerCurrency += collectible.pointValue;
             Debug.Log(player.playerCurrency);
             Destroy(this.gameObject);
