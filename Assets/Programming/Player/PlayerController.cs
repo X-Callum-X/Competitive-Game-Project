@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
+    [Header("References")]
     public GameObject startingPoint;
 
     public GameObject playerProjectile;
+
+    public GameObject notEnoughCurrencyText;
+
+    public TMP_Text healthAmountText;
 
     public Slider healthBar;
 
@@ -22,7 +27,10 @@ public class PlayerController : MonoBehaviour
 
     private PauseManager pauseManager;
 
+    [Header("Variables")]
     [HideInInspector] public int playerCurrency;
+
+    [HideInInspector] public int secretsCollected = 0;
 
     [SerializeField] private float currentMoveSpeed = 5f;
     [SerializeField] private float originalMoveSpeed = 5f;
@@ -35,8 +43,6 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isRunning = false;
 
-    public GameObject notEnoughCurrencyText;
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -47,6 +53,7 @@ public class PlayerController : MonoBehaviour
         pauseManager = FindFirstObjectByType<PauseManager>();
 
         healthBar.value = health;
+        healthAmountText.text = health.ToString();
         notEnoughCurrencyText.SetActive(false);
     }
 
@@ -130,6 +137,7 @@ public class PlayerController : MonoBehaviour
     {
         health -= damage;
         healthBar.value = health;
+        healthAmountText.text = health.ToString();
 
         if (health <= 0)
         {

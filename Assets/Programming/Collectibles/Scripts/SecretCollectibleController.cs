@@ -1,14 +1,12 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CollectibleController : MonoBehaviour
+public class SecretCollectibleController : MonoBehaviour
 {
     private PlayerController player;
 
     public ParticleSystem collectEffect;
 
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private CollectibleSO collectible;
+    public int rotationSpeed;
 
     private void Start()
     {
@@ -26,7 +24,7 @@ public class CollectibleController : MonoBehaviour
         {
             Instantiate(collectEffect, transform.position, Quaternion.identity);
 
-            player.playerCurrency += collectible.pointValue;
+            player.secretsCollected += 1;
             Destroy(this.gameObject);
         }
     }
