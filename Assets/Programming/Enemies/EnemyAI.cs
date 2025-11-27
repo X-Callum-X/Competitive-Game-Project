@@ -10,6 +10,8 @@ public class EnemyAI : MonoBehaviour
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
 
+    private SpawnDuds spawnDuds;
+
     public Slider healthBar;
     private float healthbarTarget = 1;
     public float reduceSpeed = 2;
@@ -36,6 +38,7 @@ public class EnemyAI : MonoBehaviour
 
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
+        spawnDuds = GetComponent<SpawnDuds>();
 
         healthBar.maxValue = health;
 
@@ -148,6 +151,8 @@ public class EnemyAI : MonoBehaviour
     private void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        spawnDuds.DropDuds();
 
         Destroy(gameObject);
     }

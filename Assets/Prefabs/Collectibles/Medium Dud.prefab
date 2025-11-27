@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339467ebe1c253d4c867b4724a59ac51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectEffect: {fileID: 6460668723778391503, guid: 73403794df7291042bf69654c2875e8a, type: 3}
   rotationSpeed: 200
   collectible: {fileID: 11400000, guid: c6356d3186ad59a49b4f875edf0ec688, type: 2}
 --- !u!1 &8271460667690591869

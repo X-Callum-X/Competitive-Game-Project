@@ -296,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339467ebe1c253d4c867b4724a59ac51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collectEffect: {fileID: 6460668723778391503, guid: 2e2aff29199f287499e5ed534f5e1d24, type: 3}
   rotationSpeed: 200
   collectible: {fileID: 11400000, guid: 702c0f83de7dc8d4a8abf7d70ce71b49, type: 2}
 --- !u!1 &8749810783989416750

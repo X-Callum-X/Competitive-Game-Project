@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd26f9de86126c44392a7ff987e502c8, type: 3}
   m_Name: LargeDud
   m_EditorClassIdentifier: 
-  pointValue: 10
+  pointValue: 25
