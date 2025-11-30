@@ -159,6 +159,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy Projectile"))
         {
+            Debug.Log("Damaged");
             Destroy(other.gameObject);
             TakeDamage(1);
         }
