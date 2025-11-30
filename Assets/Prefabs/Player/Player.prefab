@@ -27,11 +27,11 @@ Transform:
   m_GameObject: {fileID: 4467030871590091228}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.3332, z: 0.401}
+  m_LocalPosition: {x: 0, y: 0.33319998, z: 0.40099907}
   m_LocalScale: {x: 0.4928789, y: 0.30165607, z: 0.4623972}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6891008945287519751}
+  m_Father: {fileID: 3729739943533780615}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!33 &6879569505245949033
 MeshFilter:
@@ -95,7 +95,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3729739943533780615}
+  - component: {fileID: 1924003515287606300}
+  - component: {fileID: 3104229345237504284}
   - component: {fileID: 188477064970591027}
+  - component: {fileID: 104468397760848818}
   - component: {fileID: 9191861900259670625}
   m_Layer: 3
   m_Name: Player
@@ -117,108 +120,24 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6891008945287519751}
+  - {fileID: 3509730161587991531}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &188477064970591027
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180975021562590818}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9191861900259670625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180975021562590818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa515d1879c80944d90dac709ecd1e9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingPoint: {fileID: 0}
-  playerProjectile: {fileID: 6684519989448223093, guid: 92890f4691ce3714fb590d18e6e40dab, type: 3}
-  deathEffect: {fileID: 0}
-  healthBar: {fileID: 0}
-  health: 3
-  playerCurrency: 0
-  currentMoveSpeed: 5
-  originalMoveSpeed: 5
-  rotationSpeed: 10
-  followCamera: {fileID: 0}
-  jumpHeight: 1
-  gravity: -9.81
---- !u!1 &8343016793851538459
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6891008945287519751}
-  - component: {fileID: 1644684265606980117}
-  - component: {fileID: 8799065658917347386}
-  - component: {fileID: 7348472637829431118}
-  m_Layer: 3
-  m_Name: Player Body
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6891008945287519751
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343016793851538459}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3509730161587991531}
-  m_Father: {fileID: 3729739943533780615}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1644684265606980117
+--- !u!33 &1924003515287606300
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343016793851538459}
+  m_GameObject: {fileID: 8180975021562590818}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8799065658917347386
+--- !u!23 &3104229345237504284
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343016793851538459}
+  m_GameObject: {fileID: 8180975021562590818}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -257,13 +176,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7348472637829431118
+--- !u!143 &188477064970591027
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180975021562590818}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &104468397760848818
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343016793851538459}
+  m_GameObject: {fileID: 8180975021562590818}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -280,3 +224,30 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9191861900259670625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8180975021562590818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa515d1879c80944d90dac709ecd1e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingPoint: {fileID: 0}
+  playerProjectile: {fileID: 6684519989448223093, guid: 92890f4691ce3714fb590d18e6e40dab, type: 3}
+  notEnoughCurrencyText: {fileID: 0}
+  healthAmountText: {fileID: 0}
+  healthBar: {fileID: 0}
+  health: 3
+  deathEffect: {fileID: 0}
+  playerCurrency: 0
+  secretsCollected: 0
+  currentMoveSpeed: 5
+  originalMoveSpeed: 5
+  rotationSpeed: 10
+  followCamera: {fileID: 0}
+  jumpHeight: 1
+  gravity: -9.81
