@@ -98,7 +98,6 @@ GameObject:
   - component: {fileID: 1924003515287606300}
   - component: {fileID: 3104229345237504284}
   - component: {fileID: 188477064970591027}
-  - component: {fileID: 104468397760848818}
   - component: {fileID: 9191861900259670625}
   m_Layer: 3
   m_Name: Player
@@ -201,29 +200,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &104468397760848818
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180975021562590818}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9191861900259670625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,5 +225,5 @@ MonoBehaviour:
   originalMoveSpeed: 5
   rotationSpeed: 10
   followCamera: {fileID: 0}
-  jumpHeight: 1
-  gravity: -9.81
+  jumpHeight: 2
+  gravity: -20
