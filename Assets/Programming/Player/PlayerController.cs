@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
@@ -82,13 +83,13 @@ public class PlayerController : MonoBehaviour
         }
 
         bool pressingShift = Input.GetKey(KeyCode.LeftShift);
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
         Vector3 movementInput = Quaternion.Euler(0, followCamera.transform.eulerAngles.y, 0) * new Vector3(horizontalInput, 0, verticalInput);
         Vector3 movementDirection = movementInput;
 
-        playerController.Move(movementDirection * currentMoveSpeed * Time.deltaTime);
+        playerController.Move(movementDirection.normalized * currentMoveSpeed * Time.deltaTime);
 
         if (pressingShift && !isRunning)
         {
@@ -160,6 +161,11 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             TakeDamage(1);
+        }
+
+        if (other.gameObject.CompareTag("Hazard"))
+        {
+            SceneManager.LoadScene("Level");
         }
 
         if (other.gameObject.name == "Barrier Trigger" && playerCurrency >= barrier.amountToPay)

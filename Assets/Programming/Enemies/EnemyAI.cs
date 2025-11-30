@@ -42,8 +42,6 @@ public class EnemyAI : MonoBehaviour
 
         healthBar.maxValue = health;
 
-        //healthBar.value = health;
-
         UpdateHealthBar();
     }
 
@@ -137,8 +135,6 @@ public class EnemyAI : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-
-        //healthBar.value = health;
 
         UpdateHealthBar();
 
