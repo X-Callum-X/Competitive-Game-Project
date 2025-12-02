@@ -29,9 +29,10 @@ public class PlayerController : MonoBehaviour
     private PauseManager pauseManager;
 
     [Header("Variables")]
-    [HideInInspector] public int playerCurrency;
 
-    [HideInInspector] public int secretsCollected = 0;
+    public int secretsCollected = 0;
+
+    public int playerCurrency;
 
     [SerializeField] private float currentMoveSpeed = 5f;
     [SerializeField] private float originalMoveSpeed = 5f;
