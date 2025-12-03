@@ -1,14 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CollectibleController : MonoBehaviour
+public class DudController : MonoBehaviour
 {
     private PlayerController player;
 
     public ParticleSystem collectEffect;
 
     [SerializeField] private float rotationSpeed;
-    [SerializeField] private CollectibleSO collectible;
+    [SerializeField] private DudSO collectible;
 
     private void Start()
     {
