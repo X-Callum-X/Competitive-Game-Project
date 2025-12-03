@@ -34,11 +34,12 @@ public class PlayerController : MonoBehaviour
 
     public int playerCurrency;
 
-    [SerializeField] private float currentMoveSpeed = 5f;
-    [SerializeField] private float originalMoveSpeed = 5f;
+    public float currentMoveSpeed = 5f;
+    public float originalMoveSpeed = 5f;
+    public float jumpHeight = 1.0f;
+
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private Camera followCamera;
-    [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravity = -9.81f;
 
     private Vector3 moveDirection;
