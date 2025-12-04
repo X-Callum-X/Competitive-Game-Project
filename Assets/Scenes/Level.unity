@@ -17947,6 +17947,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Big Enemy (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5568211537595949278, guid: c2b1fbb6be0522945a1d4473fcffafc0, type: 3}
+      propertyPath: offsetY
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5592431887251498244, guid: c2b1fbb6be0522945a1d4473fcffafc0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.9799995
@@ -33231,7 +33235,7 @@ MonoBehaviour:
   targetToFollow: {fileID: 881106478}
   distanceFromTarget: 5
   smoothTime: 0
-  rotationLimit: {x: -25, y: 55}
+  rotationLimit: {x: -55, y: 25}
 --- !u!65 &850187680
 BoxCollider:
   m_ObjectHideFlags: 0

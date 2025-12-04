@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     public int health;
 
+    private float healTimer = 0;
+
     public ParticleSystem deathEffect;
 
     public TMP_Text moveFasterText;
@@ -77,6 +79,20 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Attack();
+        }
+
+        if (health < 5)
+        {
+            healTimer += Time.deltaTime;
+
+            if (healTimer >= 5)
+            {
+                health += 1;
+                healTimer = 0;
+
+                healthBar.value = health;
+                healthAmountText.text = health.ToString();
+            }
         }
     }
 
@@ -144,6 +160,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        healTimer = 0;
         healthBar.value = health;
         healthAmountText.text = health.ToString();
 
