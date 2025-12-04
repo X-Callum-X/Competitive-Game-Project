@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,11 +21,15 @@ public class PlayerController : MonoBehaviour
 
     public int health;
 
+    public ParticleSystem deathEffect;
+
+    public TMP_Text moveFasterText;
+
+    public TMP_Text jumpHigherText;
+
     private CharacterController playerController;
 
     private BarrierPaymentSystem barrier;
-
-    public ParticleSystem deathEffect;
 
     private PauseManager pauseManager;
 
@@ -171,6 +176,20 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("Level");
         }
 
+        if (other.gameObject.CompareTag("Power-Up"))
+        {
+            StopAllCoroutines();
+
+            if (other.GetComponent<PowerUpController>().isSpeedBoost)
+            {
+                StartCoroutine(DisplayMoveFasterText());
+            }
+            else if (other.GetComponent<PowerUpController>().isJumpBoost)
+            {
+                StartCoroutine(DisplayJumpHigherText());
+            }
+        }
+
         if (other.gameObject.name == "Barrier Trigger" && playerCurrency >= barrier.amountToPay)
         {
             Debug.Log("Collision");
@@ -193,6 +212,27 @@ public class PlayerController : MonoBehaviour
         notEnoughCurrencyText.gameObject.SetActive(false);
     }
 
+    private IEnumerator DisplayMoveFasterText()
+    {
+        jumpHigherText.gameObject.SetActive(false);
+
+        moveFasterText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        moveFasterText.gameObject.SetActive(false);
+    }
+
+    private IEnumerator DisplayJumpHigherText()
+    {
+        moveFasterText.gameObject.SetActive(false);
+
+        jumpHigherText.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        jumpHigherText.gameObject.SetActive(false);
+    }
 
     //private IEnumerator DelayedReset()
     //{

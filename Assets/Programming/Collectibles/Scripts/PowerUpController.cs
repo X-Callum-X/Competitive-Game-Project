@@ -1,4 +1,3 @@
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
@@ -55,7 +54,27 @@ public class PowerUpController : MonoBehaviour
             {
                 player.jumpHeight += 1f;
             }
-                Destroy(this.gameObject);
+
+            Destroy(this.gameObject);
         }
     }
 }
+
+//    private IEnumerator DisplayMoveFasterText()
+//    {
+//        moveFasterText.gameObject.SetActive(true);
+
+//        yield return new WaitForSeconds(1.5f);
+
+//        moveFasterText.gameObject.SetActive(false);
+//    }
+
+//    private IEnumerator DisplayJumpHigherText()
+//    {
+//        jumpHigherText.gameObject.SetActive(true);
+
+//        yield return new WaitForSeconds(1.5f);
+
+//        jumpHigherText.gameObject.SetActive(false);
+//    }
+//}

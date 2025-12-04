@@ -194,7 +194,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -217,13 +217,15 @@ MonoBehaviour:
   notEnoughCurrencyText: {fileID: 0}
   healthAmountText: {fileID: 0}
   healthBar: {fileID: 0}
-  health: 3
+  health: 5
   deathEffect: {fileID: 0}
-  playerCurrency: 0
+  moveFasterText: {fileID: 0}
+  jumpHigherText: {fileID: 0}
   secretsCollected: 0
+  playerCurrency: 0
   currentMoveSpeed: 5
   originalMoveSpeed: 5
+  jumpHeight: 2
   rotationSpeed: 10
   followCamera: {fileID: 0}
-  jumpHeight: 2
   gravity: -20

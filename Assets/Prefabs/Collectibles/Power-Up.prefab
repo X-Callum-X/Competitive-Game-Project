@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6477042182754034937}
   m_Layer: 0
   m_Name: Power-Up
-  m_TagString: Untagged
+  m_TagString: Power-Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed6239fb14c417418644601166c4f5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveFasterText: {fileID: 0}
+  jumpHigherText: {fileID: 0}
   collectEffect: {fileID: 6460668723778391503, guid: 73403794df7291042bf69654c2875e8a, type: 3}
   rotationSpeed: 200
   isSpeedBoost: 1
