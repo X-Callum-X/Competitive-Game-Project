@@ -563,7 +563,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dud: {fileID: 1677723936953424585, guid: a9b118ddafdeef942b3a248ffb75572f, type: 3}
   numOfDuds: 10
-  radius: 1
+  radius: 3
+  offsetY: 2.5
 --- !u!1 &7068616845203372207
 GameObject:
   m_ObjectHideFlags: 0

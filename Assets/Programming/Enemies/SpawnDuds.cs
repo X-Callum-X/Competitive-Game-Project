@@ -9,6 +9,8 @@ public class SpawnDuds : MonoBehaviour
 
     [SerializeField] float radius = 5f;
 
+    [SerializeField] float offsetY;
+
     public void DropDuds()
     {
         for (int i = 0; i < numOfDuds; i++)
@@ -16,7 +18,7 @@ public class SpawnDuds : MonoBehaviour
             float angle = i * Mathf.PI * 2 / numOfDuds;
             float x = Mathf.Cos(angle) * radius;
             float z = Mathf.Sin(angle) * radius;
-            Vector3 pos = transform.position + new Vector3(x, 0, z);
+            Vector3 pos = transform.position + new Vector3(x, 0 - offsetY, z);
             float angleDegrees = -angle * Mathf.Rad2Deg;
             Quaternion rot = Quaternion.Euler(0, angleDegrees, 0);
             Instantiate(dud, pos, rot);

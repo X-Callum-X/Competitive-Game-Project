@@ -30,7 +30,8 @@ public class CameraController : MonoBehaviour
 
         rotX = Mathf.Clamp(rotX, rotationLimit.x, rotationLimit.y);
 
-        Vector3 nextRotation = new Vector3(rotX, rotY);
+        // Controls the camera's actual rotation. Set rotX to positive to invert camera rotation on the x axis
+        Vector3 nextRotation = new Vector3(-rotX, rotY);
 
         currentRotation = Vector3.SmoothDamp(currentRotation, nextRotation, ref smoothVelocity, smoothTime);
         transform.localEulerAngles = currentRotation;
