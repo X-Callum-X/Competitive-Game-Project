@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Hazard
   - Power-Up
+  - Explosion
   layers:
   - Default
   - TransparentFX

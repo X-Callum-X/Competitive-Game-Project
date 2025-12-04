@@ -166,7 +166,6 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy Projectile"))
         {
-            Debug.Log("Damaged");
             Destroy(other.gameObject);
             TakeDamage(1);
         }
@@ -174,6 +173,11 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Hazard"))
         {
             SceneManager.LoadScene("Level");
+        }
+
+        if (other.gameObject.CompareTag("Explosion"))
+        {
+            TakeDamage(1);
         }
 
         if (other.gameObject.CompareTag("Power-Up"))
