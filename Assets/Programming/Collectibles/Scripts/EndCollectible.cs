@@ -1,31 +1,24 @@
 using UnityEngine;
-using TMPro;
-using System.Collections;
-using UnityEngine.SceneManagement;
 
 public class EndCollectible : MonoBehaviour
 {
-    public TMP_Text youWinText;
+    public GameObject youWinScreen;
+
+    public int rotationSpeed;
+
+    private void Update()
+    {
+        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            StartCoroutine(EndLevel());
-        }
-    }
-
-    private IEnumerator EndLevel()
-    {
-        youWinText.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(1f);
-
-        Time.timeScale = 1f;
+        Time.timeScale = 0;
+        Destroy(this.gameObject);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        SceneManager.LoadScene("MainMenu");
+        youWinScreen.SetActive(true);
     }
 }
