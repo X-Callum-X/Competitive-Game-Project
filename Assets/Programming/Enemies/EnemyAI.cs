@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -26,11 +27,16 @@ public class EnemyAI : MonoBehaviour
     [Header("Attacking Variables")]
     public float timeBetweenAttacks;
     bool hasAttacked;
+
     public GameObject projectile;
+    public ParticleSystem explosionEffect;
+    private GameObject damageArea;
 
     [Header("States")]
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
+    public bool isBigEnemy;
 
     private void Awake()
     {
@@ -39,6 +45,13 @@ public class EnemyAI : MonoBehaviour
         player = GameObject.Find("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         spawnDuds = GetComponent<SpawnDuds>();
+
+        if (isBigEnemy)
+        {
+            damageArea = transform.Find("Damage Area").gameObject;
+
+            damageArea.gameObject.SetActive(false);
+        }
 
         healthBar.maxValue = health;
 
@@ -112,18 +125,39 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
-
-        if (!hasAttacked)
+        if (!isBigEnemy)
         {
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            transform.LookAt(player);
+        }
 
-            rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
+        if (isBigEnemy)
+        {
+            if (!hasAttacked)
+            {
+                explosionEffect.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 2.5f, this.transform.position.z);
 
-            Destroy(rb.gameObject, 3);
+                Instantiate(explosionEffect, explosionEffect.transform.position, Quaternion.Euler(-90, 0, 0));
 
-            hasAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                StopAllCoroutines();
+                StartCoroutine(TriggerDamageArea());
+
+                hasAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
+        }
+        else if (!isBigEnemy)
+        {
+            if (!hasAttacked)
+            {
+                Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+
+                rb.AddForce(transform.forward * 20f, ForceMode.Impulse);
+
+                Destroy(rb.gameObject, 3);
+
+                hasAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
         }
     }
 
@@ -165,6 +199,15 @@ public class EnemyAI : MonoBehaviour
             Destroy(other.gameObject);
             TakeDamage(1);
         }
+    }
+
+    private IEnumerator TriggerDamageArea()
+    {
+        damageArea.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.1f);
+
+        damageArea.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmosSelected()
