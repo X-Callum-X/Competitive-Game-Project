@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,6 +54,11 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isRunning = false;
 
+    [Header("Respawning")]
+    public Transform placeToRespawn;
+
+    public Transform respawnPoint;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -65,13 +71,15 @@ public class PlayerController : MonoBehaviour
         healthBar.value = health;
         healthAmountText.text = health.ToString();
         notEnoughCurrencyText.SetActive(false);
+
+        placeToRespawn = respawnPoint;
     }
 
     private void Update()
     {
         Movement();
 
-        if (transform.position.y <= -10)
+        if (transform.position.y <= -10 || health <= 0)
         {
             Die();
         }
@@ -172,11 +180,15 @@ public class PlayerController : MonoBehaviour
 
     private void Die()
     {
-        //StopAllCoroutines();
+        playerController.enabled = false;
+        transform.position = placeToRespawn.transform.position;
+        playerController.enabled = true;
 
-        //StartCoroutine(DelayedReset());
+        health = 5;
 
-        SceneManager.LoadScene("Level");
+        healthBar.value = health;
+
+        healthAmountText.text = health.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -195,6 +207,16 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Explosion"))
         {
             TakeDamage(1);
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            placeToRespawn = other.transform;
         }
 
         if (other.gameObject.CompareTag("Power-Up"))
