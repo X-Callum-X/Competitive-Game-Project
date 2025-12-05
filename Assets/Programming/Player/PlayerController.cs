@@ -10,24 +10,17 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
+
+    [SerializeField] private Camera followCamera;
+
     public GameObject startingPoint;
-
     public GameObject playerProjectile;
-
     public GameObject notEnoughCurrencyText;
-
-    public TMP_Text healthAmountText;
 
     public Slider healthBar;
 
-    public int health;
-
-    private float healTimer = 0;
-
-    public ParticleSystem deathEffect;
-
+    public TMP_Text healthAmountText;
     public TMP_Text moveFasterText;
-
     public TMP_Text jumpHigherText;
 
     private CharacterController playerController;
@@ -42,12 +35,15 @@ public class PlayerController : MonoBehaviour
 
     public int playerCurrency;
 
+    public int health;
+
+    private float healTimer = 0;
+
     public float currentMoveSpeed = 5f;
     public float originalMoveSpeed = 5f;
     public float jumpHeight = 1.0f;
 
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private Camera followCamera;
     [SerializeField] private float gravity = -9.81f;
 
     private Vector3 moveDirection;
