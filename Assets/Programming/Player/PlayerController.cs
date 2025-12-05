@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     private bool isRunning = false;
 
     [Header("Respawning")]
-    public Transform placeToRespawn;
+    public Vector3 placeToRespawn;
 
     public Transform respawnPoint;
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         healthAmountText.text = health.ToString();
         notEnoughCurrencyText.SetActive(false);
 
-        placeToRespawn = respawnPoint;
+        placeToRespawn = respawnPoint.position;
     }
 
     private void Update()
@@ -181,7 +181,7 @@ public class PlayerController : MonoBehaviour
     private void Die()
     {
         playerController.enabled = false;
-        transform.position = placeToRespawn.transform.position;
+        transform.position = placeToRespawn;
         playerController.enabled = true;
 
         health = 5;
@@ -216,7 +216,8 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Checkpoint"))
         {
-            placeToRespawn = other.transform;
+            placeToRespawn = other.gameObject.transform.position;
+            Destroy(other.gameObject);
         }
 
         if (other.gameObject.CompareTag("Power-Up"))
