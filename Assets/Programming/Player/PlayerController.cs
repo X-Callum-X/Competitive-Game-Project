@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
 
     public GameObject startingPoint;
     public GameObject playerProjectile;
-    public GameObject notEnoughCurrencyText;
 
     public Slider healthBar;
 
@@ -24,8 +23,6 @@ public class PlayerController : MonoBehaviour
     public TMP_Text jumpHigherText;
 
     private CharacterController playerController;
-
-    private BarrierPaymentSystem barrier;
 
     private PauseManager pauseManager;
 
@@ -61,12 +58,10 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
 
         playerController = GetComponent<CharacterController>();
-        barrier = FindAnyObjectByType<BarrierPaymentSystem>();
         pauseManager = FindFirstObjectByType<PauseManager>();
 
         healthBar.value = health;
         healthAmountText.text = health.ToString();
-        notEnoughCurrencyText.SetActive(false);
 
         placeToRespawn = respawnPoint.position;
     }
@@ -197,7 +192,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Hazard"))
         {
-            SceneManager.LoadScene("Level");
+            Die();
         }
 
         if (other.gameObject.CompareTag("Explosion"))
@@ -229,27 +224,6 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(DisplayJumpHigherText());
             }
         }
-
-        if (other.gameObject.name == "Barrier Trigger" && playerCurrency >= barrier.amountToPay)
-        {
-            Debug.Log("Collision");
-            playerCurrency -= barrier.amountToPay;
-            Destroy(barrier.gameObject);
-        }
-        else if (other.gameObject.name == "Barrier Trigger" && playerCurrency < barrier.amountToPay)
-        {
-            StopAllCoroutines();
-            StartCoroutine(DisplayNotEnoughText());
-        }
-    }
-
-    private IEnumerator DisplayNotEnoughText()
-    {
-        notEnoughCurrencyText.gameObject.SetActive(true);
-
-        yield return new WaitForSeconds(1.5f);
-
-        notEnoughCurrencyText.gameObject.SetActive(false);
     }
 
     private IEnumerator DisplayMoveFasterText()
@@ -273,11 +247,4 @@ public class PlayerController : MonoBehaviour
 
         jumpHigherText.gameObject.SetActive(false);
     }
-
-    //private IEnumerator DelayedReset()
-    //{
-    //    yield return new WaitForSeconds(2f);
-
-    //    SceneManager.LoadScene("Level");
-    //}
 }
