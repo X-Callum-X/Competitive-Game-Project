@@ -16,7 +16,7 @@ public class SceneController: MonoBehaviour
             if (UIToFade.alpha >= 0)
             {
                 UIToFade.alpha -= Time.deltaTime;
-                if (UIToFade.alpha == 0)
+                if (UIToFade.alpha <= 0)
                 {
                     quitFadeOut = false;
                     Quit();
