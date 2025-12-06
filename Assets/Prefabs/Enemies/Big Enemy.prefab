@@ -544,7 +544,7 @@ MonoBehaviour:
   timeBetweenAttacks: 2
   projectile: {fileID: 6684519989448223093, guid: f827b7fcf81a658418af36e3ec6e7702, type: 3}
   explosionEffect: {fileID: 6460668723778391503, guid: d9bd5c9749084024082fb81bfb8386f5, type: 3}
-  sightRange: 10
+  sightRange: 20
   attackRange: 7
   playerInSightRange: 0
   playerInAttackRange: 0
