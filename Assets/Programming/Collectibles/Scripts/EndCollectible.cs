@@ -13,12 +13,15 @@ public class EndCollectible : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Time.timeScale = 0;
-        Destroy(this.gameObject);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Time.timeScale = 0;
+            Destroy(this.gameObject);
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
-        youWinScreen.SetActive(true);
+            youWinScreen.SetActive(true);
+        }
     }
 }
